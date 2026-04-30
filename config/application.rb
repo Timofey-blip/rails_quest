@@ -17,6 +17,7 @@ module RailsQuest
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
+    config.hosts << "psychic-fishstick-wrqqwpgvp9w7257pg-3000.app.github.dev"
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -1,0 +1,9 @@
+one:
+  agent: one
+  title: Infiltrate the base
+  status: assigned
+
+two:
+  agent: two
+  title: Rescue the hostage
+  status: in_progress

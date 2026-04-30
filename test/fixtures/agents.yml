@@ -1,0 +1,9 @@
+one:
+  codename: Shadow
+  level: 5
+  active: true
+
+two:
+  codename: Phantom
+  level: 3
+  active: false

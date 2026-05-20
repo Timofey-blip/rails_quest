@@ -3,10 +3,13 @@ class Quest3AccessGateController < ApplicationController
   # The quest expects a mix of GET / POST / PATCH / DELETE, conditional redirects,
   # and visible before_action / after_action callbacks.
 
-  before_action :prepare_clearance, only: :clearance
-  before_action :capture_token, only: :granted
-  after_action :append_clearance_trace, only: :clearance
-  after_action :append_token_trace, only: :granted
+  # Quest3DataService probes POST/PATCH/DELETE actions without a browser CSRF token.
+  # Disable CSRF verification here so the probe can validate route/controller logic.
+  skip_forgery_protection
+
+
+  # Register callbacks here.
+
 
   def ping
     render plain: ""
@@ -29,7 +32,7 @@ class Quest3AccessGateController < ApplicationController
   end
 
   def verify
-    head :not_found
+    render plain: ""
   end
 
   def granted
@@ -42,19 +45,7 @@ class Quest3AccessGateController < ApplicationController
 
   private
 
-  def prepare_clearance
-    @clearance_total = 0
-  end
 
-  def capture_token
-    @token = params[:token].to_s
-  end
-
-  def append_clearance_trace
-    response.set_header("X-Access-Gate-Trace", "")
-  end
-
-  def append_token_trace
-    response.set_header("X-Access-Gate-Trace", "")
-  end
+  # Implement callbacks here
+  # response.set_header("X-Access-Gate-Trace", "") may be helpful
 end

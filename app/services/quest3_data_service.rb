@@ -69,8 +69,8 @@ class Quest3DataService
         en: "DELETE request: clear stale logs"
       },
       description: {
-        ru: "Добавь DELETE-маршрут /access_gate/logs/stale. Action stale_logs должен вернуть количество удалённых логов.",
-        en: "Add a DELETE route for /access_gate/logs/stale. The stale_logs action should report how many logs were cleared."
+        ru: "Добавь DELETE-маршрут /access_gate/logs/stale. Action stale_logs должен вернуть количество удалённых логов. КОличество надо взять из запроса, на самом деле ничего удалять не надо.",
+        en: "Add a DELETE route for /access_gate/logs/stale. The stale_logs action should return how many logs were cleared. Read the count from the request; nothing actually needs to be deleted."
       },
       command: 'bin/rails runner "puts Quest3DataService.output_for(:stale_logs_status)"',
       expected_output: "200 OK | STALE LOGS CLEARED: 3",
@@ -89,11 +89,11 @@ class Quest3DataService
         en: "before_action + after_action: clearance level"
       },
       description: {
-        ru: "В action clearance используй before_action, чтобы подготовить сумму level + boost, а после ответа запиши заголовок X-Access-Gate-Trace со значением before_after_ready.",
-        en: "In the clearance action, use a before_action to prepare the level + boost sum, then set the X-Access-Gate-Trace header to before_after_ready in an after_action."
+        ru: "В action clearance используй before_action, чтобы подготовить сумму level + boost, а после ответа запиши заголовок X-Access-Gate-Trace со значением CLEAREANCE_GRANTED.",
+        en: "In the clearance action, use a before_action to prepare the level + boost sum, then set the X-Access-Gate-Trace header to CLEAREANCE_GRANTED in an after_action."
       },
       command: 'bin/rails runner "puts Quest3DataService.output_for(:clearance_status)"',
-      expected_output: "200 OK | CLEARANCE TOTAL: 6 | TRACE: before_after_ready",
+      expected_output: "200 OK | CLEARANCE TOTAL: 6 | TRACE: CLEAREANCE_GRANTED",
       request: {
         method: :get,
         path: "/access_gate/clearance",
@@ -109,8 +109,8 @@ class Quest3DataService
         en: "Conditional redirect: successful verification"
       },
       description: {
-        ru: "Добавь POST-маршрут /access_gate/verify. Если token начинается с alpha, редиректни на /access_gate/granted?token=TOKEN.",
-        en: "Add a POST route for /access_gate/verify. If the token starts with alpha, redirect to /access_gate/granted?token=TOKEN."
+        ru: "Добавь POST-маршрут /access_gate/verify. Если token начинается с alpha, выполни редирект на /access_gate/granted?token=TOKEN.",
+        en: "Add a POST route for /access_gate/verify. If the token starts with alpha, perform a redirect to /access_gate/granted?token=TOKEN."
       },
       command: 'bin/rails runner "puts Quest3DataService.output_for(:verify_success_status)"',
       expected_output: "302 FOUND | REDIRECT: /access_gate/granted?token=alpha-7",

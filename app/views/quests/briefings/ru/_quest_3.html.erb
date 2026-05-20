@@ -3,30 +3,41 @@
 <% total_steps = quest_three_tasks.size %>
 
 <section class="space-y-6">
+  <div class="rounded-xl border border-cyan-900/70 bg-cyan-950/20 p-4">
+    <div class="text-xs uppercase tracking-[0.3em] text-cyan-500 mb-3">Опорные точки</div>
+    <p class="text-sm text-gray-300">
+      Основные файлы квеста: <code class="bg-gray-800 text-gray-300 px-2 py-1 rounded">config/routes.rb</code>
+      и <code class="bg-gray-800 text-gray-300 px-2 py-1 rounded">app/controllers/quest3_access_gate_controller.rb</code>.
+      Для быстрой проверки первого шага можно использовать
+      <code class="bg-gray-800 text-gray-300 px-2 py-1 rounded">Quest3DataService.output_for(:ping_status)</code>
+      и маршрут <code class="bg-gray-800 text-gray-300 px-2 py-1 rounded">/access_gate/ping</code>.
+    </p>
+  </div>
+
   <% if current_step == 1 %>
     <p>
       Модуль <span class="text-cyan-300 font-semibold">AccessGate</span> отвечает за маршрутизацию запросов внутри шлюза доступа.
-      Сейчас кнопки и формы на клиенте есть, но маршруты не подключены, контроллер молчит, а callback'и не оставляют следов.
+      Сейчас кнопки и формы на клиенте есть, но маршруты не подключены.
     </p>
 
     <p>
-      В этом квесте база данных пока не нужна. Всё внимание — на <code class="bg-gray-800 text-gray-300 px-2 py-1 rounded">config/routes.rb</code>,
-      <code class="bg-gray-800 text-gray-300 px-2 py-1 rounded">app/controllers/quest3_access_gate_controller.rb</code> и на поведение HTTP-ответов.
+      В этом квесте база данных пока нужна. Всё внимание — на <code class="bg-gray-800 text-gray-300 px-2 py-1 rounded">config/routes.rb</code>,
+      <code class="bg-gray-800 text-gray-300 px-2 py-1 rounded">app/controllers/quest3_access_gate_controller.rb</code> и на поведение логи запросов.
     </p>
 
     <div class="rounded-xl border border-cyan-900/70 bg-cyan-950/20 p-4">
-      <div class="text-xs uppercase tracking-[0.3em] text-cyan-500 mb-3">Что тренируем</div>
+      <div class="text-xs uppercase tracking-[0.3em] text-cyan-500 mb-3">Что понадобится сделать:</div>
       <ul class="list-disc space-y-2 pl-5 text-gray-200 marker:text-cyan-400">
         <li>маршруты для разных HTTP-глаголов: GET, POST, PATCH, DELETE;</li>
-        <li>actions контроллера и работу с <code class="bg-gray-800 text-gray-300 px-1 py-0.5 rounded">params</code>;</li>
+        <li>методы контроллера и работу с <code class="bg-gray-800 text-gray-300 px-1 py-0.5 rounded">params</code>;</li>
         <li>условные редиректы;</li>
         <li><code class="bg-gray-800 text-gray-300 px-1 py-0.5 rounded">before_action</code> и <code class="bg-gray-800 text-gray-300 px-1 py-0.5 rounded">after_action</code>.</li>
       </ul>
     </div>
 
     <p>
-      Для каждого шага ниже есть клиентская кнопка или форма. Пока маршруты не настроены, это нормально — они могут отдавать 404.
-      Когда реализуешь нужный маршрут и action, сервис начнёт показывать правильный ответ и откроет следующий шаг.
+      Для каждого шага ниже есть клиентская кнопка или форма. Но они не работают.
+      Приложение будет возвращать 403 или 404, пока пока не будет создан правильный маршрут и не будет реализован нужный метод контроллера.
     </p>
   <% end %>
 
@@ -45,7 +56,7 @@
 
   <div class="rounded-xl border border-purple-700/60 bg-purple-950/20 p-4">
     <div class="text-xs uppercase tracking-[0.3em] text-purple-400 mb-3">Клиентский стенд</div>
-    <div class="text-sm text-gray-300 mb-4">Нажми кнопку или отправь форму для текущего шага. Если маршрут ещё не добавлен — это ожидаемо.</div>
+    <div class="text-sm text-gray-300 mb-4">Нажми кнопку или отправь форму для текущего шага. </div>
 
     <% case task[:key] %>
     <% when :ping_status %>
@@ -94,7 +105,7 @@
 
     <div class="rounded-xl border border-cyan-700/60 bg-cyan-950/20 p-4">
       <div class="text-xs uppercase tracking-[0.3em] text-cyan-400 mb-3">Что вернул probe-сервис</div>
-      <pre class="min-h-48 whitespace-pre-wrap text-sm leading-relaxed text-cyan-100"><%= task[:actual_output] %></pre>
+      <pre class="min-h-48 whitespace-pre-wrap text-sm leading-relaxed text-cyan-100"><%= truncated_probe_output(task[:actual_output]) %></pre>
     </div>
   </div>
 

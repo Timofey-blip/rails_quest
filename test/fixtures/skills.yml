@@ -1,7 +1,19 @@
-one:
-  name: Hacking
-  category: Technical
+cryptography:
+  name: Cryptography
+  category: analysis
 
-two:
-  name: Stealth
-  category: Combat
+field_medicine:
+  name: Field Medicine
+  category: support
+
+infiltration:
+  name: Infiltration
+  category: stealth
+
+negotiation:
+  name: Negotiation
+  category: diplomacy
+
+recon:
+  name: Recon
+  category: intel

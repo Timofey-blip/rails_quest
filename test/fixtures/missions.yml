@@ -1,9 +1,49 @@
-one:
-  agent: one
-  title: Infiltrate the base
+harbor_shield:
+  agent: atlas
+  title: Harbor Shield
   status: assigned
 
-two:
-  agent: two
-  title: Rescue the hostage
+midnight_relay:
+  agent: atlas
+  title: Midnight Relay
   status: in_progress
+
+silent_echo:
+  agent: atlas
+  title: Silent Echo
+  status: completed
+
+ghost_signal:
+  agent: echo
+  title: Ghost Signal
+  status: completed
+
+iron_veil:
+  agent: echo
+  title: Iron Veil
+  status: assigned
+
+sapphire_run:
+  agent: echo
+  title: Sapphire Run
+  status: completed
+
+solar_tide:
+  agent: echo
+  title: Solar Tide
+  status: in_progress
+
+frozen_cipher:
+  agent: nova
+  title: Frozen Cipher
+  status: completed
+
+ember_trace:
+  agent: viper
+  title: Ember Trace
+  status: assigned
+
+glass_horizon:
+  agent: viper
+  title: Glass Horizon
+  status: completed

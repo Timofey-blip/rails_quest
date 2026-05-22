@@ -1,9 +1,39 @@
+atlas_cryptography:
+  agent: atlas
+  skill: cryptography
 
+atlas_recon:
+  agent: atlas
+  skill: recon
 
-one:
-  agent: one
-  skill: one
+echo_field_medicine:
+  agent: echo
+  skill: field_medicine
 
-two:
-  agent: two
-  skill: two
+echo_infiltration:
+  agent: echo
+  skill: infiltration
+
+echo_recon:
+  agent: echo
+  skill: recon
+
+nova_cryptography:
+  agent: nova
+  skill: cryptography
+
+nova_negotiation:
+  agent: nova
+  skill: negotiation
+
+viper_infiltration:
+  agent: viper
+  skill: infiltration
+
+viper_negotiation:
+  agent: viper
+  skill: negotiation
+
+viper_recon:
+  agent: viper
+  skill: recon

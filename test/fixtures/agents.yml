@@ -1,9 +1,19 @@
-one:
-  codename: Shadow
-  level: 5
+atlas:
+  codename: Atlas
+  level: 6
   active: true
 
-two:
-  codename: Phantom
-  level: 3
+echo:
+  codename: Echo
+  level: 4
+  active: true
+
+nova:
+  codename: Nova
+  level: 5
   active: false
+
+viper:
+  codename: Viper
+  level: 9
+  active: true
